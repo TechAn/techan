@@ -1,0 +1,7 @@
+reload
+run
+run "MYSTK"
+run MYSTK
+run MYST#
+run ANYSTK
+exit
