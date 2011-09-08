@@ -1,22 +1,23 @@
 package com.techan
 
 object StockReporter {
-  
+
   val usage = "Usage: stockShortCode"
-    
+
   def main(args: Array[String]) {
-		
+
     if (args.length == 0) println(usage)
-    
-    for (a <- args) a match {
-      case "MYSTK" =>
-        println("My Stock")
-      case "ANYSTK" =>
-        println("Any Stock")
-      case x =>
-        println("Unknown stock " + x )
+    else {
+      //filter the stock quote list by stock short code
+      val matchedStocks = loadQuotes.filter(s => s.shortCode.contains(args(0)))
+      if (matchedStocks.length != 0)
+        matchedStocks.foreach(println)
+      else
+        println("No match for shortcode " + args(0))
     }
- 
   }
-  
+
+  def loadQuotes() : Array[StockQuote] = {
+    Array(StockQuote("My Stock", "MYSTK", 1.26, 1.24), StockQuote("AnyStock", "ANYSTK", 5.45, 5.43))
+ }
 }
